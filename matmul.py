@@ -1,41 +1,18 @@
-def readm(fname= 'A.csv'):
-    f = open('A.csv', 'r') #w, b
-    A = []
-    for line in f.readlines():
-        A.append([ float(x) for x in line.strip().sqlit(',') ])
-    f.close()
-    return A
+def readm(name):
+    a =open(name,'r')
+    b =[]
+    for i in a.readlines():
+        b.append([float(x) for x  in i.strip().split(',')])
+    a.close()
+    return b
 def matmul(A,b):
-    m, n = len(A), len(b[0])
-    J = len(A[0]) # A-mxJ #b - Jxn
-    if len(A[0])== len(b):
-        c = [[0]*n] for i in range(m)]
-        for i in range(m):
-            for c in range(n):
-                C[r][c] = sum( [A[r][j]*b[j][0] for j in range(3) ])
-        
-        return c
-    return [] # ไม่สามารถดูคูณได้
+    m,n = len(A),len(b[0])
 
-#4.print c
-C = matmul(A, b)
-#5.test
-c = A*b
-print(c)
-A = [
-    [1,2,3,4],
-    [2,1,3,4],
-    [1,3,2,1]
-]
-b = [
-    [1,2],
-    [3,1],
-    [2,2],
-    [3,4]
-]
-c = matmul(A, b)
-print('-----')
-for row in C:
-    print(row)
-print('-----')
-#import numpy as np
+    if len(A[0])==len(b):
+        C = [ [0]*n]*m
+        for r in range(m):
+            for c in range(n):
+                C[r][c]=sum(A[r][j]*b[j][c] for j in  range(len(A[0])))
+        return C
+    else : 
+        return []
